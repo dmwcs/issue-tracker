@@ -5,9 +5,17 @@ interface errState {
   setError: (err: string) => void;
 }
 
-const useErrStore = create<errState>()((set) => ({
+interface isSubmitState {
+  isSubmit: boolean;
+  setIsSubmit: (submitStatus: boolean) => void;
+}
+
+export const useErrStore = create<errState>()((set) => ({
   error: '',
   setError: (err) => set((state) => ({ error: err })),
 }));
 
-export default useErrStore;
+export const useIsSubmit = create<isSubmitState>()((set) => ({
+  isSubmit: false,
+  setIsSubmit: (submitStatus) => set(() => ({ isSubmit: submitStatus })),
+}));
